@@ -1,5 +1,6 @@
 package com.springmvcut.controller;
 
+<<<<<<< HEAD
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasProperty;
@@ -23,11 +24,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
+=======
+>>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
 import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+<<<<<<< HEAD
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,11 +51,34 @@ import com.springmvcut.model.TodoBuilder;
 import com.springmvcut.service.TodoService;
 import com.springmvcut.util.TestUtil;
 import com.springmvcut.util.WebTestConstants;
+=======
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+
+
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.springmvcut.model.Todo;
+import com.springmvcut.model.TodoBuilder;
+import com.springmvcut.service.TodoService;
+>>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:testContext.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 @WebAppConfiguration
 public class TodoControllerTest {
+<<<<<<< HEAD
 	private static final String DESCRIPTION = "description";
 	private static final Long ID = 1L;
 	private static final String TITLE = "title";
@@ -60,6 +87,12 @@ public class TodoControllerTest {
 	 
     @Autowired
     private TodoService todoServiceMock;
+=======
+	private MockMvc mockMvc;
+	 
+    @Autowired
+    private TodoService todoService;
+>>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
  
     //Add WebApplicationContext field here
     @Autowired
@@ -71,11 +104,16 @@ public class TodoControllerTest {
         //We have to reset our mock between tests because the mock objects
         //are managed by the Spring container. If we would not reset them,
         //stubbing and verified behavior would "leak" from one test to another.
+<<<<<<< HEAD
         Mockito.reset(todoServiceMock);
+=======
+        Mockito.reset(todoService);
+>>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
  
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     
+<<<<<<< HEAD
     @Test
     public void findAll_ShouldAndTodoEntriesToModelAndRenderTodoListView() throws Exception{
     	Todo first = new TodoBuilder()
@@ -209,4 +247,6 @@ public class TodoControllerTest {
         assertNull(formObject.getId());
         assertThat(formObject.getTitle(), is(TITLE));
     }
+=======
+>>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
 }

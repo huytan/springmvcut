@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
+<<<<<<< HEAD
 <c:set var="url" value="${pageContext.request.contextPath}"/>
 <head>
     <title><spring:message code="spring.test.mvc.example.title"/></title>
@@ -15,6 +16,19 @@
     <script type="text/javascript" src="${url}/static/js/vendor/bootstrap-collapse.js"></script>
     <script type="text/javascript" src="${url}/static/js/vendor/handlebars-1.0.rc.1.js"></script>
     <script type="text/javascript" src="${url}/static/js/todo.js"></script>
+=======
+<head>
+    <title><spring:message code="spring.test.mvc.example.title"/></title>
+    <link rel="stylesheet" type="text/css" href="/static/css/example.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-responsive.css"/>
+    <script type="text/javascript" src="/static/js/vendor/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="/static/js/vendor/bootstrap.js"></script>
+    <script type="text/javascript" src="/static/js/vendor/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="/static/js/vendor/bootstrap-collapse.js"></script>
+    <script type="text/javascript" src="/static/js/vendor/handlebars-1.0.rc.1.js"></script>
+    <script type="text/javascript" src="/static/js/todo.js"></script>
+>>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
     <sitemesh:write property="head"/>
 </head>
 <body>

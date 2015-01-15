@@ -32,4 +32,11 @@
 	<jpa:repositories base-package="com.springmvcut.repository" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager"/>
 	<import resource="database-dev.xml"/>
 	
+<<<<<<< HEAD
+=======
+	
+	<bean id="todoService" name="todoService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.springmvcut.service.TodoService"/>
+    </bean>
+>>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
 </beans>
