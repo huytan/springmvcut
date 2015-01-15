@@ -31,7 +31,7 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-<<<<<<< HEAD
+
 	
 	<filter>
 	    <filter-name>sitemesh</filter-name>
@@ -43,7 +43,4 @@
 	    <url-pattern>/*</url-pattern>
 	  </filter-mapping>
 	
-=======
->>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
-
 </web-app>

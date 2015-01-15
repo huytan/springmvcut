@@ -1,4 +1,4 @@
-package TodoDTOBuilder;
+package com.springmvcut.todo;
 
 import com.springmvcut.dto.TodoDTO;
 

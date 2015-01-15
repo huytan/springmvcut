@@ -1,6 +1,6 @@
 package com.springmvcut.controller;
 
-<<<<<<< HEAD
+
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.hasProperty;
@@ -24,14 +24,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-=======
->>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
 import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-<<<<<<< HEAD
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +48,7 @@ import com.springmvcut.model.TodoBuilder;
 import com.springmvcut.service.TodoService;
 import com.springmvcut.util.TestUtil;
 import com.springmvcut.util.WebTestConstants;
-=======
+
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -72,13 +69,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.springmvcut.model.Todo;
 import com.springmvcut.model.TodoBuilder;
 import com.springmvcut.service.TodoService;
->>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:testContext.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
+@ContextConfiguration(locations = {"classpath:testContext.xml", "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml","file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @WebAppConfiguration
 public class TodoControllerTest {
-<<<<<<< HEAD
+
 	private static final String DESCRIPTION = "description";
 	private static final Long ID = 1L;
 	private static final String TITLE = "title";
@@ -87,12 +84,7 @@ public class TodoControllerTest {
 	 
     @Autowired
     private TodoService todoServiceMock;
-=======
-	private MockMvc mockMvc;
-	 
-    @Autowired
-    private TodoService todoService;
->>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
+
  
     //Add WebApplicationContext field here
     @Autowired
@@ -104,16 +96,12 @@ public class TodoControllerTest {
         //We have to reset our mock between tests because the mock objects
         //are managed by the Spring container. If we would not reset them,
         //stubbing and verified behavior would "leak" from one test to another.
-<<<<<<< HEAD
+
         Mockito.reset(todoServiceMock);
-=======
-        Mockito.reset(todoService);
->>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
- 
+
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
     
-<<<<<<< HEAD
     @Test
     public void findAll_ShouldAndTodoEntriesToModelAndRenderTodoListView() throws Exception{
     	Todo first = new TodoBuilder()
@@ -131,22 +119,22 @@ public class TodoControllerTest {
     	
     	mockMvc.perform(get("/"))
     		 .andExpect(status().isOk())
-    		 .andExpect(view().name("todo/list"))
+    		 .andExpect(view().name(TodoController.VIEW_TODO_LIST))
     		 .andExpect(forwardedUrl("/WEB-INF/views/todo/list.jsp"))
-    		 .andExpect(model().attribute("todos", hasSize(2)))
-    		 .andExpect(model().attribute("todos", hasItem(
+    		 .andExpect(model().attribute(TodoController.MODEL_ATTRIBUTE_TODO_LIST, hasSize(2)))
+    		 .andExpect(model().attribute(TodoController.MODEL_ATTRIBUTE_TODO_LIST, hasItem(
     				 allOf(
-    						 hasProperty("id", is(1L)),
-    						 hasProperty("description", is("Lorem ipsum")),
-    						 hasProperty("title", is("Foo"))
+    						 hasProperty(WebTestConstants.FORM_FIELD_ID, is(1L)),
+    						 hasProperty(WebTestConstants.FORM_FIELD_DESCRIPTION, is("Lorem ipsum")),
+    						 hasProperty(WebTestConstants.FORM_FIELD_TITLE, is("Foo"))
     				)
     				 
     		 )))
-    		 .andExpect(model().attribute("todos", hasItem(
+    		 .andExpect(model().attribute(TodoController.MODEL_ATTRIBUTE_TODO_LIST, hasItem(
     				 allOf(
-    						 hasProperty("id", is(2L)),
-    						 hasProperty("description", is("Lorem ipsum")),
-    						 hasProperty("title", is("Bar"))
+    						 hasProperty(WebTestConstants.FORM_FIELD_ID, is(2L)),
+    						 hasProperty(WebTestConstants.FORM_FIELD_DESCRIPTION, is("Lorem ipsum")),
+    						 hasProperty(WebTestConstants.FORM_FIELD_TITLE, is("Bar"))
     				)
     				 
     		 )));
@@ -182,9 +170,9 @@ public class TodoControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("todo/view"))
                 .andExpect(forwardedUrl("/WEB-INF/views/todo/view.jsp"))
-                .andExpect(model().attribute("todo", hasProperty("id", is(1L))))
-                .andExpect(model().attribute("todo", hasProperty("description", is("Lorem ipsum"))))
-                .andExpect(model().attribute("todo", hasProperty("title", is("Foo"))));
+                .andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_ID, is(1L))))
+                .andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_DESCRIPTION, is("Lorem ipsum"))))
+                .andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_TITLE, is("Foo"))));
  
         verify(todoServiceMock, times(1)).findById(1L);
         verifyNoMoreInteractions(todoServiceMock);
@@ -197,18 +185,18 @@ public class TodoControllerTest {
         
         mockMvc.perform(post("/todo/add")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("description", description)
-                .param("title", title)
+                .param(WebTestConstants.FORM_FIELD_DESCRIPTION, description)
+                .param(WebTestConstants.FORM_FIELD_TITLE, title)
                 .sessionAttr("todo", new TodoDTO())
         )
 	        .andExpect(status().isOk())
 	        .andExpect(view().name("todo/add"))
 	        .andExpect(forwardedUrl("/WEB-INF/views/todo/add.jsp"))
-	        .andExpect(model().attributeHasFieldErrors("todo", "title"))
-	        .andExpect(model().attributeHasFieldErrors("todo", "description"))
-	        .andExpect(model().attribute("todo", hasProperty("id", nullValue())))
-	        .andExpect(model().attribute("todo", hasProperty("description", is(description))))
-	        .andExpect(model().attribute("todo", hasProperty("title", is(title))));
+	        .andExpect(model().attributeHasFieldErrors("todo", WebTestConstants.FORM_FIELD_DESCRIPTION))
+	        .andExpect(model().attributeHasFieldErrors("todo", WebTestConstants.FORM_FIELD_TITLE))
+	        .andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_ID, nullValue())))
+	        .andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_DESCRIPTION, is(description))))
+	        .andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_TITLE, is(title))));
 
         verifyZeroInteractions(todoServiceMock);
 	}
@@ -247,6 +235,5 @@ public class TodoControllerTest {
         assertNull(formObject.getId());
         assertThat(formObject.getTitle(), is(TITLE));
     }
-=======
->>>>>>> 27f88af561c3cc0d5455633514f8d9b0412cdde5
+
 }

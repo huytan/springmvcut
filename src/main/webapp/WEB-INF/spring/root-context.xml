@@ -13,6 +13,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
 	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
        <property name="exceptionMappings">
            <props>
@@ -39,22 +40,4 @@
 		
 	</bean>
 	
-	<!-- 
-	<context:component-scan base-package="com.springmvcut">
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	</context:component-scan>
-	
-	<context:component-scan base-package="com.springmvcut.service"/>
-	<context:component-scan base-package="com.springmvcut.service.impl"/>
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
-	
-	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-	
-	<task:annotation-driven/>
-	
-	<jpa:repositories base-package="com.springmvcut.repository" entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager"/>
-	<import resource="database-dev.xml"/> -->
 </beans>
