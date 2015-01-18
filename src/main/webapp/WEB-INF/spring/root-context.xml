@@ -37,7 +37,6 @@
 			</list>
 		</property>
 		<property name="fallbackToSystemLocale" value="false"></property>
-		
 	</bean>
 	
 </beans>

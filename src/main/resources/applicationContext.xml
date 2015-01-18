@@ -18,9 +18,6 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
 	
-	<context:component-scan base-package="com.springmvcut.service"/>
-	<context:component-scan base-package="com.springmvcut.service.impl"/>
-	
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">

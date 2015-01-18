@@ -48,10 +48,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		"classpath:database-dev.xml",
 		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
 		"file:src/main/webapp/WEB-INF/spring/root-context.xml" })
-@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class, 
-						DirtiesContextTestExecutionListener.class,
-						TransactionalTestExecutionListener.class, 
-						DbUnitTestExecutionListener.class })
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class,
+    DirtiesContextTestExecutionListener.class,
+    TransactionalTestExecutionListener.class,
+    DbUnitTestExecutionListener.class })
 @WebAppConfiguration
 @DatabaseSetup("toDoData.xml")
 public class ITTodoControllerTest {
@@ -165,12 +165,12 @@ public class ITTodoControllerTest {
 	@ExpectedDatabase("toDoData.xml")
 	public void findById_TodoEntryFound_ShouldAddTodoEntryToModelAndRenderViewTodoEntryView() throws Exception {
 		mockMvc.perform(get("/todo/{id}", 1L))
-				.andExpect(status().isOk())
-				.andExpect(view().name(TodoController.VIEW_TODO_VIEW))
-				.andExpect(forwardedUrl("/WEB-INF/views/todo/view.jsp"))
-				.andExpect(model().attribute(TodoController.MODEL_ATTRIBUTE_TODO, hasProperty("id", is(1L))))
-				.andExpect(model().attribute(TodoController.MODEL_ATTRIBUTE_TODO, hasProperty("description", is("Lorem ipsum"))))
-				.andExpect(model().attribute(TodoController.MODEL_ATTRIBUTE_TODO, hasProperty("title", is("Foo"))));
+		.andExpect(status().isOk())
+		.andExpect(view().name("todo/view"))
+		.andExpect(forwardedUrl("/WEB-INF/views/todo/view.jsp"))
+		.andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_ID, is(1L))))
+		.andExpect(model().attribute("todo",hasProperty(WebTestConstants.FORM_FIELD_DESCRIPTION, is("Lorem ipsum"))))
+		.andExpect(model().attribute("todo", hasProperty(WebTestConstants.FORM_FIELD_TITLE, is("Foo"))));
 	}
 
 	@Test
